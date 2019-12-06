@@ -1,26 +1,34 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Button } from './components/Button/Button.component';
+import { Input } from './components/Input/Input.component';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = { input: '' };
+	}
+	render() {
+		const numbers = [
+			['7', '8', '9', '÷'],
+			['4', '5', '6', 'X'],
+			['1', '2', '3', '+'],
+			['.', '0', '=', '-']
+		];
+		return (
+			<div className='App'>
+				<div className='calc-wrapper'>
+					<Input input={this.state.input}></Input>
+					{numbers.map((subarray) => (
+						<div className='row'>
+							{subarray.map((x) => (
+								<Button>{x}</Button>
+							))}
+						</div>
+					))}
+				</div>
+			</div>
+		);
+	}
 }
-
 export default App;
